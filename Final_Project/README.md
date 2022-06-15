@@ -2,7 +2,7 @@ IC Lab Final Project Report
 ===
 
 ### Github link of the codes
-Project Repository: [IC Lab 2021 Summer](https://github.com/sam29309010/2021_Summer_NCTU_ICLAB)
+Project Repository: [IC Lab 2021 Spring](https://github.com/sam29309010/2021_Spring_NCTU_ICLAB)
 
 ## Introduction
 This project is the final report of course Integrated Circuit Design Laboratory (IC Lab). It is an implementation of simplified version time of flight (TOF), which is a distance measurement technique used in many applications, such as vehicle monitoring, object detection, robot navigation, etc. This project calculates the distance between sensor and object using given sensing signals, and also supports temporal/spatial adjustment to enhance the accuracy of estimation. For more information, refer to [time of flight introduction](https://en.wikipedia.org/wiki/Time_of_flight) and [project description](./Final_Project_2022S_V7.pdf).
