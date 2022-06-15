@@ -96,3 +96,6 @@ The function for each stage is as follow:
 6. APR Optimization
     Since it's time-critical circuit (according to course grading policy), lower core utilization is implemented in exchange for small clock cycle during APR. Also, due to limited time, several configurations are set manually to generate the final logic for post simulation.
     Some modification is adopted based on the APR flow in Lab11, e.g. setting a larger ring and wider stripe for powerplanning. <ins>Also, extra slacks time are exploited throughout the P&R (preCTS, postCTS and postRoute) in order to avoid any violations at signoff stage. It could be done by specifying the slack time in ECO/Mode settings. It greatly helps to meet timing requirement without human effort.</ins>
+    
+    ![Placement](./placement.png)
+    ![Layout](./layout.png)
