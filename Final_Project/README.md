@@ -86,6 +86,7 @@ The function for each stage is as follow:
     | 5.5 | 1,981,858 | Pass |
     | 5 | (2,013,948) | Violated |
 5. Accuracy analysis
+    
     The following table is the accuracy analysis from 32+1000(type0+type1/2/3) samples.
     | inputtype signal | Count | Correct | Accuracy | Average Error |
     | ---------------- | ----- | ------- | -------- | ------------- |
@@ -94,6 +95,7 @@ The function for each stage is as follow:
     | 2  | 5408 | 5408 | 100.0% | 0.00 |
     | 3  | 5136 | 5130 | 99.88% | 0.01 |
 6. APR Optimization
+    
     Since it's time-critical circuit (according to course grading policy), lower core utilization is implemented in exchange for small clock cycle during APR. Also, due to limited time, several configurations are set manually to generate the final logic for post simulation.
     Some modification is adopted based on the APR flow in Lab11, e.g. setting a larger ring and wider stripe for powerplanning. <ins>Also, extra slacks time are exploited throughout the P&R (preCTS, postCTS and postRoute) in order to avoid any violations at signoff stage. It could be done by specifying the slack time in ECO/Mode settings. It greatly helps to meet timing requirement without human effort.</ins>
     
