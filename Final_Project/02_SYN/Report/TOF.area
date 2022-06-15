@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : TOF
+Version: R-2020.09
+Date   : Tue Jun 14 16:55:59 2022
+****************************************
+
+Library(s) Used:
+
+    slow (File: /RAID2/COURSE/iclab/iclabta01/umc018/Synthesis/slow.db)
+    USERLIB (File: /home/RAID2/COURSE/iclab/iclab039/Final_Project/04_MEM/BIN_MEM_200MHz.db)
+
+Number of ports:                          406
+Number of nets:                         20608
+Number of cells:                        18042
+Number of combinational cells:          13861
+Number of sequential cells:              4015
+Number of macros/black boxes:              16
+Number of buf/inv:                       2137
+Number of references:                     132
+
+Combinational area:             307359.366504
+Buf/Inv area:                    22326.797542
+Noncombinational area:          283422.587776
+Macro/Black Box area:          1440307.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:               2031088.954280
+Total area:                 undefined
+1

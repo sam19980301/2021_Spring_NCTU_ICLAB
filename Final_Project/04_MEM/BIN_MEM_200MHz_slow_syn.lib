@@ -1,0 +1,581 @@
+/*
+ *      CONFIDENTIAL AND PROPRIETARY SOFTWARE/DATA OF ARTISAN COMPONENTS, INC.
+ *      
+ *      Copyright (c) 2022 Artisan Components, Inc.  All Rights Reserved.
+ *      
+ *      Use of this Software/Data is subject to the terms and conditions of
+ *      the applicable license agreement between Artisan Components, Inc. and
+ *      UMC.  In addition, this Software/Data
+ *      is protected by copyright law and international treaties.
+ *      
+ *      The copyright notice(s) in this Software/Data does not indicate actual
+ *      or intended publication of this Software/Data.
+ *
+ *      Synopsys model for Synchronous Single-Port Ram
+ *
+ *      Library Name:   USERLIB
+ *      Instance Name:  BIN_MEM_200MHz
+ *      Words:          16
+ *      Word Width:     64
+ *      Mux:            4
+ *      Pipeline:       No
+ *      Process:        slow
+ *      Delays:		max
+ *
+ *      Creation Date:  2022-06-10 17:47:39Z
+ *      Version:        2001Q4V0
+ *
+ *      Verified With: Synopsys Design Compiler
+ *
+ *      Modeling Assumptions: This library contains a black box description
+ *          for a memory element.  At the library level, a
+ *          default_max_transition constraint is set to the maximum
+ *          characterized input slew.  Each output has a max_capacitance
+ *          constraint set to the highest characterized output load.  These two
+ *          constraints force Design Compiler to synthesize circuits that
+ *          operate within the characterization space.  The user can tighten
+ *          these constraints, if desired.  When writing SDF from Design
+ *          Compiler, use the version 2.1 option.  This ensures the SDF will
+ *          annotate to simulation models provided with this generator.
+ *
+ *      Modeling Limitations: 
+ *          Due to limitations of the .lib format, some data reduction was
+ *          necessary.  When reducing data, minimum values were chosen for the
+ *          fast case corner and maximum values were used for the typical and
+ *          best case corners.  It is recommended that critical timing and
+ *          setup and hold times be checked at all corners.
+ *
+ *      Known Bugs: None.
+ *
+ *      Known Work Arounds: N/A
+ *
+ */
+
+library(USERLIB) {
+	delay_model		: table_lookup;
+	revision		: 1.1;	
+	date			: "2022-06-10 17:47:39Z";
+	comment			: "Confidential Information of Artisan Components, Inc.  Use subject to Artisan Components license. Copyright (c) 2022 Artisan Components, Inc.";
+	time_unit		: "1ns";
+	voltage_unit		: "1V";
+	current_unit		: "1mA";
+	leakage_power_unit	: "1mW";
+	nom_process		: 1;
+	nom_temperature		: 125.000;
+	nom_voltage		: 1.620;
+	capacitive_load_unit	 (1,pf);
+
+	pulling_resistance_unit	        : "1kohm";
+
+	/* additional header data */
+        default_cell_leakage_power      : 0;
+	default_fanout_load		: 1;
+	default_inout_pin_cap		: 0.0035;
+	default_input_pin_cap		: 0.0035;
+	default_output_pin_cap		: 0.0;
+	default_max_transition		: 4.000;
+
+ 	/* k-factors */
+ 	k_process_cell_fall             : 1;
+ 	k_process_cell_leakage_power    : 0;
+ 	k_process_cell_rise             : 1;
+ 	k_process_fall_transition       : 1;
+ 	k_process_hold_fall             : 1;
+ 	k_process_hold_rise             : 1;
+ 	k_process_internal_power        : 0;
+ 	k_process_min_pulse_width_high  : 1;
+ 	k_process_min_pulse_width_low   : 1;
+ 	k_process_pin_cap               : 0;
+ 	k_process_recovery_fall         : 1;
+ 	k_process_recovery_rise         : 1;
+ 	k_process_rise_transition       : 1;
+ 	k_process_setup_fall            : 1;
+ 	k_process_setup_rise            : 1;
+ 	k_process_wire_cap              : 0;
+ 	k_process_wire_res              : 0;
+	k_temp_cell_fall		: 0.00181;
+	k_temp_cell_rise		: 0.00181;
+	k_temp_hold_fall                : 0.00181;
+	k_temp_hold_rise                : 0.00181;
+	k_temp_min_pulse_width_high     : 0.00181;
+	k_temp_min_pulse_width_low      : 0.00181;
+	k_temp_min_period               : 0.00181;
+	k_temp_rise_propagation         : 0.00181;
+	k_temp_fall_propagation         : 0.00181;
+	k_temp_rise_transition          : 0.0;
+	k_temp_fall_transition          : 0.0;
+	k_temp_recovery_fall            : 0.00181;
+	k_temp_recovery_rise            : 0.00181;
+	k_temp_setup_fall               : 0.00181;
+	k_temp_setup_rise               : 0.00181;
+	k_volt_cell_fall                : -0.65387;
+	k_volt_cell_rise                : -0.65387;
+	k_volt_hold_fall                : -0.65387;
+	k_volt_hold_rise                : -0.65387;
+	k_volt_min_pulse_width_high     : -0.65387;
+	k_volt_min_pulse_width_low      : -0.65387;
+	k_volt_min_period               : -0.65387;
+	k_volt_rise_propagation         : -0.65387;
+	k_volt_fall_propagation         : -0.65387;
+	k_volt_rise_transition	        : 0.0;
+	k_volt_fall_transition	        : 0.0;
+	k_volt_recovery_fall            : -0.65387;
+	k_volt_recovery_rise            : -0.65387;
+	k_volt_setup_fall               : -0.65387;
+	k_volt_setup_rise               : -0.65387;
+	operating_conditions(slow) {
+		process	 : 1;
+		temperature	 : 125.000;
+		voltage	 : 1.620;
+		tree_type	 : balanced_tree;
+	}
+        default_operating_conditions : slow;
+	wire_load("sample") {
+		resistance	 : 1.6e-05;
+		capacitance	 : 0.0002;
+		area	 : 1.7;
+  		slope	 : 500;
+		fanout_length	 (1,500);
+	}
+	output_voltage(GENERAL) {
+		vol	 : 0.4;
+		voh	 : VDD - 0.4;
+		vomin	 : -0.5;
+		vomax	 : VDD + 0.5;
+	}
+	input_voltage(CMOS) {
+		vil	 : 0.3 * VDD;
+		vih	 : 0.7 * VDD;
+		vimin	 : -0.5;
+		vimax	 : VDD + 0.5;
+	}
+	input_voltage(TTL) {
+		vil	 : 0.8;
+		vih	 : 2;
+		vimin	 : -0.5;
+		vimax	 : VDD + 0.5;
+	}
+        lu_table_template(BIN_MEM_200MHz_delay_template) {
+           variable_1 : input_net_transition;
+           variable_2 : total_output_net_capacitance;
+               index_1 ("1000, 1001, 1002, 1003, 1004");
+               index_2 ("1000, 1001, 1002, 1003, 1004");
+        }
+	lu_table_template(BIN_MEM_200MHz_constraint_template) {
+           variable_1 : related_pin_transition;
+           variable_2 : constrained_pin_transition;
+               index_1 ("1000, 1001, 1002, 1003, 1004");
+               index_2 ("1000, 1001, 1002, 1003, 1004");
+        }
+	lu_table_template(BIN_MEM_200MHz_load_template) {
+           variable_1 : total_output_net_capacitance;
+               index_1 ("1000, 1001, 1002, 1003, 1004");
+        }
+        power_lut_template(BIN_MEM_200MHz_passive_energy_template_1x2) {
+           variable_1 : input_transition_time;
+               index_1 ("1000, 1001");
+        }
+	library_features(report_delay_calculation);
+	type (BIN_MEM_200MHz_DATA) {
+		base_type : array ;
+		data_type : bit ;
+		bit_width : 64;
+		bit_from : 63;
+		bit_to : 0 ;
+		downto : true ;
+	}
+	type (BIN_MEM_200MHz_ADDRESS) {
+		base_type : array ;
+		data_type : bit ;
+		bit_width : 4;
+		bit_from : 3;
+		bit_to : 0 ;
+		downto : true ;
+	}
+cell(BIN_MEM_200MHz) {
+	area		 : 90019.185;
+	dont_use	 : TRUE;
+	dont_touch	 : TRUE;
+        interface_timing : TRUE;
+	memory() {
+		type : ram;
+		address_width : 4;
+		word_width : 64;
+	}
+	bus(Q)	 {
+		bus_type : BIN_MEM_200MHz_DATA;
+		direction : output;
+		max_capacitance : 2.222;
+		capacitance : 0.022;
+                three_state : "OEN" ;
+                memory_read() {
+			address : A;
+		}
+		timing() {
+			related_pin :	"CLK" ;
+			timing_type : rising_edge;
+			timing_sense : non_unate;
+			cell_rise(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "2.023, 2.169, 2.321, 2.619, 3.215", \
+			  "2.077, 2.223, 2.375, 2.673, 3.269", \
+			  "2.184, 2.331, 2.482, 2.781, 3.377", \
+			  "2.400, 2.546, 2.698, 2.996, 3.592", \
+			  "2.534, 2.681, 2.833, 3.131, 3.727" \
+			)
+			}
+			rise_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.095, 0.406, 0.729, 1.363, 2.631")
+			}
+			cell_fall(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "2.026, 2.120, 2.217, 2.409, 2.791", \
+			  "2.079, 2.173, 2.271, 2.462, 2.845", \
+			  "2.187, 2.281, 2.379, 2.570, 2.953", \
+			  "2.403, 2.497, 2.594, 2.786, 3.169", \
+			  "2.537, 2.631, 2.729, 2.920, 3.303" \
+			)
+			}
+			fall_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.054, 0.238, 0.428, 0.801, 1.548")
+		}	}
+		timing() {
+			related_pin :	"OEN" ;
+                        timing_type : three_state_disable ;
+			timing_sense : non_unate;
+
+			cell_rise(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "1.038, 1.060, 1.212, 1.510, 2.106", \
+			  "1.058, 1.109, 1.260, 1.559, 2.155", \
+			  "1.097, 1.206, 1.357, 1.656, 2.252", \
+			  "1.253, 1.400, 1.551, 1.850, 2.446", \
+			  "1.374, 1.521, 1.673, 1.971, 2.567" \
+			)
+                       }
+			rise_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.095, 0.406, 0.729, 1.363, 2.631")
+			}
+			cell_fall(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "1.038, 1.038, 1.038, 1.189, 1.572", \
+			  "1.058, 1.058, 1.058, 1.238, 1.621", \
+			  "1.097, 1.097, 1.143, 1.335, 1.718", \
+			  "1.176, 1.240, 1.337, 1.529, 1.912", \
+			  "1.267, 1.361, 1.458, 1.650, 2.033" \
+			)
+			}
+			fall_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.054, 0.238, 0.428, 0.801, 1.548")
+		}	}
+		timing() {
+			related_pin :	"OEN" ;
+			timing_sense : non_unate;
+                        timing_type : three_state_enable ;
+
+			cell_rise(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "1.038, 1.060, 1.212, 1.510, 2.106", \
+			  "1.058, 1.109, 1.260, 1.559, 2.155", \
+			  "1.097, 1.206, 1.357, 1.656, 2.252", \
+			  "1.253, 1.400, 1.551, 1.850, 2.446", \
+			  "1.374, 1.521, 1.673, 1.971, 2.567" \
+			)
+                       }
+			rise_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.095, 0.406, 0.729, 1.363, 2.631")
+			}
+			cell_fall(BIN_MEM_200MHz_delay_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ( \
+			  "1.038, 1.038, 1.038, 1.189, 1.572", \
+			  "1.058, 1.058, 1.058, 1.238, 1.621", \
+			  "1.097, 1.097, 1.143, 1.335, 1.718", \
+			  "1.176, 1.240, 1.337, 1.529, 1.912", \
+			  "1.267, 1.361, 1.458, 1.650, 2.033" \
+			)
+			}
+			fall_transition(BIN_MEM_200MHz_load_template) {
+			index_1 ("0.022, 0.292, 0.572, 1.122, 2.222");
+			values ("0.054, 0.238, 0.428, 0.801, 1.548")
+		}	}
+        }
+
+	pin(CLK) {
+		direction : input;
+		capacitance : 0.351
+		clock	: true;
+		min_pulse_width_low	: 0.275;
+		min_pulse_width_high	: 0.147;
+		min_period		: 1.883;
+		max_transition		: 4.000;
+		internal_power(){
+			when : "CEN";
+			power(BIN_MEM_200MHz_passive_energy_template_1x2) {
+				index_1 ("0.0 1.0");
+	    			values ("0.000, 0.000")
+			}	
+		}
+		internal_power(){
+			when : "!CEN & WEN";
+        		power(BIN_MEM_200MHz_passive_energy_template_1x2) {
+				index_1 ("0.0 1.0");
+            			values ("182.077, 182.077")
+        		}
+		}
+		internal_power(){
+			when : "!CEN & !WEN";
+			power(BIN_MEM_200MHz_passive_energy_template_1x2) {
+	    			index_1 ("0.0 1.0");
+	    			values ("201.108, 201.108")
+			}	
+		}
+	}
+
+	pin(CEN) {
+		direction : input;
+		capacitance : 0.018;
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: setup_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.612, 0.621, 0.641, 0.680, 0.762", \
+			  "0.558, 0.568, 0.587, 0.627, 0.709", \
+			  "0.450, 0.460, 0.480, 0.519, 0.601", \
+			  "0.235, 0.244, 0.264, 0.303, 0.385", \
+			  "0.100, 0.110, 0.129, 0.169, 0.251" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.612, 0.621, 0.641, 0.680, 0.762", \
+			  "0.558, 0.568, 0.587, 0.627, 0.709", \
+			  "0.450, 0.460, 0.480, 0.519, 0.601", \
+			  "0.235, 0.244, 0.264, 0.303, 0.385", \
+			  "0.100, 0.110, 0.129, 0.169, 0.251" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: hold_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.003, 0.000, 0.000, 0.000, 0.000", \
+			  "0.111, 0.101, 0.082, 0.042, 0.018", \
+			  "0.327, 0.317, 0.297, 0.258, 0.233", \
+			  "0.461, 0.452, 0.432, 0.392, 0.368" \
+			)
+				
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.003, 0.000, 0.000, 0.000, 0.000", \
+			  "0.111, 0.101, 0.082, 0.042, 0.018", \
+			  "0.327, 0.317, 0.297, 0.258, 0.233", \
+			  "0.461, 0.452, 0.432, 0.392, 0.368" \
+			)
+	}	}	}
+
+
+	pin(OEN)	{
+		direction	 : input;
+		capacitance : 0.009;
+	}
+	pin(WEN) {
+		direction : input;
+		capacitance : 0.015;
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: setup_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.702, 0.744, 0.827, 0.994, 1.098", \
+			  "0.648, 0.690, 0.773, 0.940, 1.044", \
+			  "0.541, 0.582, 0.666, 0.832, 0.937", \
+			  "0.325, 0.367, 0.450, 0.617, 0.721", \
+			  "0.254, 0.274, 0.316, 0.483, 0.587" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.702, 0.744, 0.827, 0.994, 1.098", \
+			  "0.648, 0.690, 0.773, 0.940, 1.044", \
+			  "0.541, 0.582, 0.666, 0.832, 0.937", \
+			  "0.325, 0.367, 0.450, 0.617, 0.721", \
+			  "0.254, 0.274, 0.316, 0.483, 0.587" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: hold_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.019, 0.000, 0.000, 0.000, 0.000", \
+			  "0.234, 0.192, 0.109, 0.000, 0.000", \
+			  "0.369, 0.327, 0.244, 0.098, 0.050" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.019, 0.000, 0.000, 0.000, 0.000", \
+			  "0.234, 0.192, 0.109, 0.000, 0.000", \
+			  "0.369, 0.327, 0.244, 0.098, 0.050" \
+			)
+	}	}	}
+
+	bus(A)  {
+		bus_type : BIN_MEM_200MHz_ADDRESS;
+		direction : input;
+		capacitance : 0.043;
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: setup_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.500, 0.505, 0.515, 0.535, 0.589", \
+			  "0.447, 0.452, 0.461, 0.481, 0.535", \
+			  "0.339, 0.344, 0.354, 0.374, 0.427", \
+			  "0.123, 0.128, 0.138, 0.158, 0.212", \
+			  "0.000, 0.000, 0.004, 0.023, 0.077" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.500, 0.505, 0.515, 0.535, 0.589", \
+			  "0.447, 0.452, 0.461, 0.481, 0.535", \
+			  "0.339, 0.344, 0.354, 0.374, 0.427", \
+			  "0.123, 0.128, 0.138, 0.158, 0.212", \
+			  "0.000, 0.000, 0.004, 0.023, 0.077" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: hold_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.085, 0.080, 0.070, 0.050, 0.038", \
+			  "0.139, 0.134, 0.124, 0.104, 0.092", \
+			  "0.246, 0.242, 0.232, 0.212, 0.199", \
+			  "0.462, 0.457, 0.447, 0.427, 0.415", \
+			  "0.597, 0.592, 0.582, 0.562, 0.550" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.085, 0.080, 0.070, 0.050, 0.038", \
+			  "0.139, 0.134, 0.124, 0.104, 0.092", \
+			  "0.246, 0.242, 0.232, 0.212, 0.199", \
+			  "0.462, 0.457, 0.447, 0.427, 0.415", \
+			  "0.597, 0.592, 0.582, 0.562, 0.550" \
+			)
+	}	}	}
+	bus(D)	 {
+		bus_type : BIN_MEM_200MHz_DATA;
+		direction : input;
+		capacitance : 0.005;
+		memory_write() {
+			address : A;
+			clocked_on : "CLK";
+		}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: setup_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.368, 0.378, 0.440, 0.682, 0.834", \
+			  "0.314, 0.324, 0.386, 0.628, 0.780", \
+			  "0.206, 0.216, 0.278, 0.521, 0.672", \
+			  "0.000, 0.001, 0.063, 0.305, 0.457", \
+			  "0.000, 0.000, 0.000, 0.171, 0.322" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.368, 0.378, 0.440, 0.682, 0.834", \
+			  "0.314, 0.324, 0.386, 0.628, 0.780", \
+			  "0.206, 0.216, 0.278, 0.521, 0.672", \
+			  "0.000, 0.001, 0.063, 0.305, 0.457", \
+			  "0.000, 0.000, 0.000, 0.171, 0.322" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: hold_rising ;
+			rise_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.072, 0.011, 0.000, 0.000, 0.000", \
+			  "0.287, 0.226, 0.135, 0.095, 0.070", \
+			  "0.422, 0.361, 0.269, 0.229, 0.204" \
+			)
+			}
+			fall_constraint(BIN_MEM_200MHz_constraint_template) {
+			index_1 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			index_2 ("0.200, 0.600, 1.400, 3.000, 4.000");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.072, 0.011, 0.000, 0.000, 0.000", \
+			  "0.287, 0.226, 0.135, 0.095, 0.070", \
+			  "0.422, 0.361, 0.269, 0.229, 0.204" \
+			)
+		}	}
+	}
+
+	cell_leakage_power : 0.000;
+  }
+}
